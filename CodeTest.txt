@@ -1,0 +1,5 @@
+Thank you for taking the time to review my code test.
+
+I know the instructions said that I didn't have to fix the code, but after trying to describe HOW I would actually fix everything, I decided it would be clearer to just show the actual changes. 
+
+As far as the testing is concerned, I created some feature testing for both the /books and /authors endpoints. I focused mainly on testing the create functionality and specifically to ensure there was validation since that the most intresting aspect. In a real scenerio, there would be tests written for deleting and updating as well. Also, in a more complex application, there would be objects that would also need unit tests in addition to the feature testing. 

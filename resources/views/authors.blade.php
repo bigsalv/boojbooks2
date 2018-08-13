@@ -18,11 +18,22 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input name="name" type="text" class="form-control" id="name" placeholder="Author Name">
+                            <input name="name" type="text" class="form-control{{ $errors->has('name')? ' is-invalid':''}}" id="name" placeholder="Author Name" value="{{ old('name') }}">
+				@if($errors->has('name'))
+				<span class="invalid-feedback">
+					<strong>{{ $errors->first('name') }}</strong>
+				</span>
+				@endif
+
                         </div>
                         <div class="form-group">
                             <label for="birthday">Birthday</label>
-                            <input name="birthday" type="text" class="form-control" id="birthday" placeholder="YYYY-MM-DD Format">
+                            <input name="birthday" type="text" class="form-control{{ $errors->has('birthday')? ' is-invalid':''}}" id="birthday" placeholder="YYYY-MM-DD Format" value="{{old('birthday')}}">
+				@if($errors->has('birthday'))
+				<span class="invalid-feedback">
+					<strong>{{ $errors->first('birthday') }}</strong>
+				</span>
+				@endif
                         </div>
                         <div class="form-group">
                             <label for="biography">Biography</label>
@@ -56,7 +67,13 @@
                                 <td>{{ $author->birthday }}</td>
                                 <td>{{ $author->books->count() }}</td>
                                 <td>{{ $author->biography }}</td>
-                                <td><a href="/authors/delete/{{ $author->id }}">Delete Author</a></td>
+                                <td>
+					<form method="POST" action="{{ url('/authors/delete/') }}">
+					{{ csrf_field() }}
+					<input type="hidden" value="{{$author->id}}" name="author_id"/>
+					<button type="submit" class="btn btn-sm btn-outline-primary">Delete Author</button>
+					</form>
+				</td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -19,10 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/authors', 'HomeController@authors')->name('authors');
-Route::post('/authors', 'HomeController@addAuthor');
-Route::get('/authors/delete/{id}', 'HomeController@deleteAuthor');
+Route::get('/authors', 'AuthorController@authors')->name('authors');
+Route::post('/authors', 'AuthorController@addAuthor');
 
-Route::get('/books', 'HomeController@books')->name('books');
-Route::post('/books', 'HomeController@addBook');
-Route::get('/books/delete/{id}', 'HomeController@deleteBook');
+// Should be a post, not a get. Get requests shouldn't alter server data
+Route::post('/authors/delete', 'AuthorController@deleteAuthor');
+
+Route::get('/books', 'BookController@books')->name('books');
+Route::post('/books', 'BookController@addBook');
+
+// Should be a post, not a get. Get requests shouldn't alter server data
+Route::post('/books/delete', 'BookController@deleteBook');
